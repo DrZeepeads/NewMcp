@@ -1,0 +1,1 @@
+# Path: nelson-gpt/frontend/src/components/TypingIndicator.js

@@ -1,0 +1,1 @@
+# Path: nelson-gpt/frontend/public/service-worker.js

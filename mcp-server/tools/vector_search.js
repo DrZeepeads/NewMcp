@@ -1,0 +1,1 @@
+# Path: nelson-gpt/mcp-server/tools/vector_search.js
