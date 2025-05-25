@@ -1,8 +1,12 @@
-# Configuration settings will be defined here.
-# For example, environment variables, database URLs, API keys.
-import os
+from pydantic_settings import BaseSettings
 
-# Example:
-# SUPABASE_URL = os.getenv("SUPABASE_URL")
-# SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-# MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
+class Settings(BaseSettings):
+    PROJECT_NAME: str = "Nelson-GPT Backend"
+    API_V1_STR: str = "/api/v1"
+    MCP_SERVER_URL: str = "http://localhost:3001/api/v1"  # Default MCP server URL
+
+    class Config:
+        env_file = ".env"
+        extra = "ignore" # Allow .env file to not exist without error, useful for defaults
+
+settings = Settings()
