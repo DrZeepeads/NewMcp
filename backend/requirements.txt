@@ -2,3 +2,8 @@ fastapi==0.104.1
 uvicorn[standard]==0.23.2
 pydantic==2.4.2
 # Add other dependencies like supabase client, qdrant client, mistralai client later
+transformers
+torch
+httpx
+pytest
+pytest-asyncio

@@ -1,12 +1,24 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="Nelson-GPT Backend")
+from app.api.routes import chat, auth
+from app.core.config import settings
+
+app = FastAPI(title=settings.PROJECT_NAME)
+
+# CORS Middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # Adjust in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Include API routers
+app.include_router(auth.router, prefix=f"{settings.API_V1_STR}/auth", tags=["auth"])
+app.include_router(chat.router, prefix=f"{settings.API_V1_STR}/chat", tags=["chat"])
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to Nelson-GPT Backend"}
-
-# Include routers from app.api.routes
-# from app.api.routes import chat, auth # Example
-# app.include_router(chat.router, prefix="/api")
-# app.include_router(auth.router, prefix="/api/auth")
+    return {"message": f"Welcome to {settings.PROJECT_NAME}"}

@@ -1,24 +1,13 @@
-# Pydantic models related to user will be defined here.
-# For example, user registration, login, and profile information.
-from pydantic import BaseModel, EmailStr
-from typing import Optional
+from pydantic import BaseModel
 
-class UserBase(BaseModel):
-    email: EmailStr
-
-class UserCreate(UserBase):
+class UserCreate(BaseModel):
+    email: str
     password: str
 
-class User(UserBase):
-    id: int # Or str, depending on your DB
-    is_active: bool = True
-
-    class Config:
-        orm_mode = True # or from_attributes = True for Pydantic v2
+class UserLogin(BaseModel):
+    email: str
+    password: str
 
 class Token(BaseModel):
     access_token: str
     token_type: str
-
-class TokenData(BaseModel):
-    email: Optional[EmailStr] = None
